@@ -238,7 +238,6 @@ h2::after {
   object-fit: contain;
   border-radius: 10px;
 }
-
 .popup-close {
   position: absolute;
   top: -15px;
