@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/logoo.jpeg";
 import "./Navbar.css";
+import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from "../context/CartContext"; 
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-
+  const { cartCount } = useCart();
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   return (
     <nav className={`navbar navbar-expand-lg fixed-top ${scrolled ? "scrolled" : "transparent"}`}>
       <div className="container">
@@ -20,7 +21,6 @@ function Navbar() {
           <img src={logo} alt="Hallal Snacks Logo" width="80" height="80" className="me-2 rounded-circle"/>
           <span>Hallal Snacks</span>
         </Link>
-
         <button
           className="navbar-toggler"
           type="button"
@@ -32,15 +32,24 @@ function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/menu">Menu</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/cart">Cart</Link></li>
-
+            <li className="nav-item"><Link className="nav-link" to="/menu">Menu</Link></li>
+            {/* Cart Link with Count */}
+            <li className="nav-item">
+              <Link className="nav-link" to="/cart">
+                <FaShoppingCart size={20} className="me-1" />
+                Cart
+                {cartCount > 0 && (
+                  <span className="badge rounded-pill bg-danger ms-1">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

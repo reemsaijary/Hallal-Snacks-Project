@@ -1,0 +1,150 @@
+
+body{
+    margin-top: 110px;
+}
+.cart-page {
+ 
+    padding-top: 100px; 
+    padding-bottom: 80px;
+    min-height: 80vh; 
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background-color: #222;
+}
+
+.cart-title {
+    font-size: 2.5rem;
+    color: #ff6600;
+    font-weight: 700;
+}
+
+/* Empty Cart Message */
+.empty-cart-message {
+    background-color: #333;
+    border-radius: 10px;
+    border: 1px solid #444;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Cart Table Styling */
+.cart-table {
+    color: #fff;
+    background-color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.cart-table th {
+    color: #ff6600;
+    border-bottom: 2px solid #ff6600;
+}
+
+.cart-table td {
+    border-top: 1px solid #444;
+}
+
+/* Quantity Controls */
+.quantity-control .btn-outline-warning {
+    border-color: #ff6600;
+    color: #ff6600;
+}
+.quantity-control .btn-outline-warning:hover {
+    background-color: #ff6600;
+    color: #222;
+}
+
+.quantity-display {
+    background-color: #444;
+    color: #fff;
+    border-radius: 0;
+    max-width: 40px; 
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
+    padding: 0.375rem 0.2rem;
+}
+
+/* Input & Textarea Styling*/
+.cart-page input.form-control,
+.cart-page textarea.form-control {
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #ff6600;
+    border-radius: 6px;
+}
+
+.cart-page input.form-control::placeholder,
+.cart-page textarea.form-control::placeholder {
+    color: #ddd;
+}
+
+.cart-page input.form-control:focus,
+.cart-page textarea.form-control:focus {
+    background-color: #555;
+    color: #fff;
+    border-color: #ff8533;
+    outline: none;
+    box-shadow: 0 0 5px #ff8533;
+}
+
+/* Order Summary */
+.order-summary-card {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.order-summary-card .list-group-item {
+    background-color: transparent;
+    color: #fff;
+    border-color: #444;
+}
+
+.total-row span {
+    color: #ff6600;
+}
+
+/* Checkout Button */
+.checkout-btn {
+    background-color: #ff6600;
+    border-color: #ff6600;
+    color: #fff;
+    font-weight: 600;
+}
+.checkout-btn:hover {
+    background-color: #e65c00;
+    border-color: #e65c00;
+    color: #fff;
+}
+
+/* Modal Styling */
+.modal-content {
+    background-color: #333;
+    color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ff6600;
+}
+
+.modal-header .btn-close {
+    filter: invert(1); /* Makes the close button visible on dark background */
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .cart-table td,
+    .cart-table th {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-title {
+        font-size: 2rem;
+    }
+    .checkout-btn {
+        font-size: 0.9rem;
+    }
+}

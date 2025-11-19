@@ -1,4 +1,4 @@
-/*menu page background*/
+
 body {
   background-image: url("../assets/home-bg1.jpeg");
   background-size: cover;
@@ -8,8 +8,6 @@ body {
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
 }
-
-/* Overlay to make text more readable */
 body::before {
   content: "";
   position: fixed;
@@ -17,8 +15,6 @@ body::before {
   background: rgba(255, 255, 255, 0.8);
   z-index: -1;
 }
-
-/*section title */
 h2 {
   font-size: 2rem;
   font-weight: 700;
@@ -26,7 +22,7 @@ h2 {
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 1px;
-  margin: 140px 0 30px 0; 
+  margin: 140px 0 30px 0;
   position: relative;
 }
 
@@ -41,8 +37,6 @@ h2::after {
   transform: translateX(-50%);
   border-radius: 10px;
 }
-
-/* card styling */
 .card {
   border: none;
   border-radius: 14px;
@@ -54,7 +48,7 @@ h2::after {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 100%; /* makes all cards equal height */
+  height: 100%;
   text-align: center;
   padding: 0;
 }
@@ -64,7 +58,7 @@ h2::after {
   box-shadow: 0 10px 25px rgba(255, 102, 0, 0.3);
 }
 
-/*  card image */
+/* Card image */
 .card-img-top {
   width: 100%;
   height: 180px;
@@ -73,21 +67,21 @@ h2::after {
   border-bottom: 3px solid #ff6600;
 }
 
-/* card body */
+/* Card body */
 .card-body {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
-/*  texts  */
+/* Text styling */
 .card-title {
   font-size: 1.1rem;
   font-weight: 700;
   color: #222;
-  margin: 5px 0; 
+  margin: 5px 0;
   text-align: center;
 }
 
@@ -102,16 +96,16 @@ h2::after {
   color: #ff6600;
   font-weight: 800;
   font-size: 1rem;
-  margin: 5px 0; 
+  margin: 5px 0;
 }
 
-/*  button */
+/* Button & input container */
 .d-flex {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  margin-top: 5px; 
+  margin-top: 5px;
 }
 
 .d-flex input.form-control {
@@ -122,6 +116,7 @@ h2::after {
   padding: 5px;
 }
 
+/* Buttons */
 .btn-warning {
   background-color: #ff6600;
   color: #fff;
@@ -137,7 +132,7 @@ h2::after {
   transform: scale(1.05);
 }
 
-/*  contanier and layout  */
+/* Container & layout */
 .container {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -153,10 +148,41 @@ h2::after {
 .col-lg-4,
 .col-md-6 {
   display: flex;
-  align-items: stretch; 
+  align-items: stretch;
 }
 
-/*  reponsive  */
+/* Input styling */
+.qty-input {
+  width: 50px;
+  padding: 6px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Menu actions buttons */
+.menu-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.add-btn {
+  background: #d35400;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.add-btn:hover {
+  background: #e67e22;
+}
+
+/* Responsive */
 @media (max-width: 992px) {
   .col-md-6 {
     flex: 0 0 45%;
@@ -177,7 +203,7 @@ h2::after {
   }
 }
 
-/*  image popup  */
+/* Image popup */
 .image-popup {
   position: fixed;
   inset: 0;
@@ -234,7 +260,7 @@ h2::after {
   transform: scale(1.1);
 }
 
-/*  animation  */
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
