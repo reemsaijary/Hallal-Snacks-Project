@@ -25,7 +25,6 @@ const CheckoutModal = ({ show, onClose, cartItems, total, clearCart }) => {
     message += `Phone: ${phone}\n`;
     message += `Order Type: ${orderType}\n`;
     if (orderType === "Delivery") message += `Delivery Address:${address}\n`;
-
     message += "---  Order Details  ---\n";
     cartItems.forEach((item) => {
       message += ` ${item.name} ${item.quantity}x ($${(item.price * item.quantity).toFixed(2)})\n`;

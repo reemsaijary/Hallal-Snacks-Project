@@ -254,7 +254,6 @@ h2::after {
   z-index: 3200;
   transition: 0.2s;
 }
-
 .popup-close:hover {
   background: #ff8533;
   transform: scale(1.1);
