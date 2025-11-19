@@ -2,6 +2,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import WhatsAppIcon from "./components/WhatsAppIcon";
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Menu from "./pages/Menu";
@@ -20,6 +22,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
+        <WhatsAppIcon/>
         <Footer />
       </CartProvider>
     </Router>

@@ -1,0 +1,46 @@
+
+.whatsapp-fixed-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1050; 
+    background-color: #25D366; 
+    color: white;
+    width: auto; 
+    min-width: 150px; 
+    height: 50px; 
+    border-radius: 25px; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 0 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-decoration: none; 
+}
+.whatsapp-fixed-btn:hover {
+    background-color: #128C7E;
+    transform: scale(1.05); 
+}
+.whatsapp-text {
+    font-size: 16px; 
+    font-weight: 600; 
+    margin-right: 10px; 
+    white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+    .whatsapp-fixed-btn {
+        min-width: 45px; /* Make it just an icon on small screens */
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        padding: 0;
+    }
+    .whatsapp-text {
+        display: none; /* Hide text on small screens */
+    }
+    .whatsapp-fixed-btn .fa-whatsapp {
+        font-size: 25px; /* Ensure icon is still visible */
+    }
+}
