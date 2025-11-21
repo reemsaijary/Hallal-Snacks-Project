@@ -7,8 +7,9 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext"; 
 
 function Navbar() {
+
   const [scrolled, setScrolled] = useState(false);
-  const { cartCount } = useCart();
+  const { cartCount } = useCart();//gets total of items nb cart from CartContext
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
