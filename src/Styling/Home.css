@@ -1,83 +1,174 @@
-/* Home Page Section */
-.home-section {
-  background-image: url("../assets/home-bg1.jpeg"); 
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  min-height: 100vh;        
-  padding-top: 80px;       
-  display: flex;             
-  justify-content: center;   
-  align-items: center;
-  text-align: center;
+.home-page {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+}
+.hero-section {
   position: relative;
-  color: white;
+  width: 100%;
+  height: 90vh;
   overflow: hidden;
 }
-.home-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+
+.hero-img {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2); 
-  backdrop-filter: brightness(0.8);
-  z-index: 0; 
+  object-fit: cover;
 }
 
-/* Content styling */
-.home-content {
-  position: relative;
-  z-index: 1;      /* ensures text is above overlay */
-  max-width: 90%;   /* keeps content neat on large screens */
-  animation: fadeInUp 1s ease forwards;
+.hero-content {
+  color: white;
+  padding: 20px;
 }
 
-/* Main Title */
-.home-title {
-  font-size: 4rem;
-  font-weight: 800;
-  text-transform: uppercase;
+.hero-content h1 {
+  font-size: 7rem;
+  font-family: 'Dancing Script', cursive;
+  color: #ff6600;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
   margin-bottom: 15px;
-  color: #fff;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
 
-/* Subtitle */
-.home-subtitle {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #ffcc00;
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
-  margin-bottom: 20px;
+.hero-content p {
+  font-size: 1.7rem;
+  margin-bottom: 25px;
 }
 
-/* Button Styling */
-.btn-warning {
-  background-color: #ff6600;
-  border: none;
-  color: #fff;
+.hero-btn {
   padding: 12px 35px;
+  background: linear-gradient(90deg, #ff6600, #ffcc00);
+  border: none;
+  color: #222;
+  font-size: 1.6rem;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
   border-radius: 30px;
-  font-weight: bold;
-  transition: 0.3s ease;
-  box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.btn-warning:hover {
-  background-color: #ff8533;
+.hero-btn:hover {
+  background: linear-gradient(90deg, #ff8533, #ffe066);
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 102, 0, 0.6);
 }
 
-/* Fade-in animation for content */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
+/* -------------------- WHAT WE OFFER -------------------- */
+.offer-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.offer-section h2 {
+  margin-bottom: 40px;
+  font-weight: 700;
+  color: #ff6600;
+  font-size: 2.2rem;
+}
+
+.offer-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.offer-card {
+  background: white;
+  width: 200px;
+  padding: 25px 15px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.offer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(255, 102, 0, 0.3);
+}
+
+.offer-icon {
+  font-size: 2.5rem;
+  color: #ff6600;
+  margin-bottom: 10px;
+}
+
+.offer-card h5 {
+  font-size: 1.1rem;
+  color: #222;
+}
+
+/* -------------------- WHY CHOOSE US -------------------- */
+.choose-section {
+  background: #fff5f0;
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.choose-section h2 {
+  font-weight: 700;
+  margin-bottom: 40px;
+  font-size: 2.2rem;
+}
+
+.choose-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.choose-card {
+  background: white;
+  width: 220px;
+  padding: 25px 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.choose-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(255, 102, 0, 0.3);
+}
+
+.choose-icon {
+  font-size: 2.5rem;
+  color: #ff6600;
+  margin-bottom: 10px;
+}
+
+.choose-card h5 {
+  font-size: 1.1rem;
+  color: #222;
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 992px) {
+  .offer-card,
+  .choose-card {
+    width: 45%;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+
+  .hero-btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+  }
+
+  .offer-card,
+  .choose-card {
+    width: 90%;
   }
 }
