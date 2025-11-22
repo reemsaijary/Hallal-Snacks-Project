@@ -93,6 +93,11 @@ User sending order form
 ### Contact Page  
 ![Contact section-1](screenshots/Contact/Contact-Page-1.png)
 ![Contact section-2](screenshots/Contact/Contact-Page-2.png)
+### Mobile View (Responsive Design)
+![Home Mobile](screenshots/MobileView/Home.jpg)
+![About Mobile](screenshots/MobileView/About.jpg)  
+![Contact Mobile](screenshots/MobileView/Contact.jpg)
+![ContactDetails Mobile](screenshots/MobileView/ContactDetails.jpg) 
 
 ## Deployment:
 You can view the live version of the app here:
