@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { FaTrash, FaPlus, FaMinus } from "react-icons/fa";
 import "../Styling/Cart.css";
+
 const CheckoutModal = ({ show, onClose, cartItems, total, clearCart }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
