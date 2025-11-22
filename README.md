@@ -34,17 +34,29 @@ This is a responsive web app for a restaurant called Hallal Snacks, made with Re
 ## File Structure Overview:
 
 **src/App.js** -->	Main component, sets up routes and wraps the app with CartProvider.
+
 **src/context/CartContext.js**--> Global state for the shopping cart and logic for adding/removing items.
+
 **src/Data/MenuData.js** --> Data for all menu items, names, prices, ingredients, and categories.
+
 **src/pages/Menu.js** --> Displays the dynamic menu and handles adding items to the cart.
+
 **src/pages/Cart.js** --> Shows the cart, controls quantities, and includes the WhatsApp checkout modal.
+
 **src/pages/Home.js** --> Home page layout with hero section and call-to-actions.
+
 **src/pages/About.js**--> About page with restaurant info and story.
+
 **src/pages/Contact.js**--> Contact page with form and social icons.
+
 **src/components/Navbar.js** --> Navigation bar with scroll effects and dynamic cart badge.
-**src/components/Footer.js** --> Fixed Footer for all pages
+
+**src/components/Footer.js** --> Fixed Footer for all pages.
+
 **src/components/WhatsAppIcon.js** --> Fixed WhatsApp button across all pages.
+
 **src/Styling/.css** --> CSS files for custom theme, responsiveness, and layout.
+g
 **public/**	--> Contains static assets like images, favicon, and index.html.
 
 ## Screenshots:
