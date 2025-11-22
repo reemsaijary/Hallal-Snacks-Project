@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import "../Styling/Menu.css";
-import MenuData from "../Data/MenuData"; 
+import MenuData from "../data/MenuData"; 
 const importAll = (r) => {
   let images = {};
   r.keys().forEach((key) => {
