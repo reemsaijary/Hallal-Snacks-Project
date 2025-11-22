@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Hallal Snacks Ordering System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview:
 
-## Available Scripts
+This is a responsive web app for a restaurant called Hallal Snacks, made with React.js. Users can browse the menu, add items to the cart, and place orders directly via WhatsApp. The project shows skills in frontend development, responsive design, and deploying a live website.
 
-In the project directory, you can run:
+## Technical Stack:
 
-### `npm start`
+1. React.js (Functional Components & Hooks).
+2. React Context API (Global Cart).
+3. React Router DOM (Routing).
+4. Bootstrap + Custom CSS (Layout & styling).
+5. React Icons (Buttons & icons).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Key Features:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Global Shopping Cart: Add, remove, and update items easily.
+2. WhatsApp Ordering: Checkout sends order directly to WhatsApp.
+3. Dynamic Images: Menu images load automatically based on item name.
+4. Responsive UI: Works on mobile and desktop, with a fixed WhatsApp button.
 
-### `npm test`
+## Setup & Installation:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+    git clone https://github.com/reemsaijary/Hallal-Snacks-Project.git
+2. Go to the project folder:
+    cd hallal-snacks
+3. Install dependencies:
+    npm install
+4. Run the application locally:
+    npm start
+  The app will open automatically in your browser at http://localhost:3000
 
-### `npm run build`
+## File Structure Overview:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**src/App.js** -->	Main component, sets up routes and wraps the app with CartProvider.
+**src/context/CartContext.js**--> Global state for the shopping cart and logic for adding/removing items.
+**src/Data/MenuData.js** --> Data for all menu items, names, prices, ingredients, and categories.
+**src/pages/Menu.js** --> Displays the dynamic menu and handles adding items to the cart.
+**src/pages/Cart.js** --> Shows the cart, controls quantities, and includes the WhatsApp checkout modal.
+**src/pages/Home.js** --> Home page layout with hero section and call-to-actions.
+**src/pages/About.js**--> About page with restaurant info and story.
+**src/pages/Contact.js**--> Contact page with form and social icons.
+**src/components/Navbar.js** --> Navigation bar with scroll effects and dynamic cart badge.
+**src/components/Footer.js** --> Fixed Footer for all pages
+**src/components/WhatsAppIcon.js** --> Fixed WhatsApp button across all pages.
+**src/Styling/.css** --> CSS files for custom theme, responsiveness, and layout.
+**public/**	--> Contains static assets like images, favicon, and index.html.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Screenshots:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Home Page 
 
-### `npm run eject`
+![Home section-1](screenshots/Home/Home-Page-1.png)  
+![Home section-2](screenshots/Home/Home-Page-2.png)
+![Home section-3](screenshots/Home/Home-Page-3.png)  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Menu Page 
+The menu page displays all items categorized by type, with images, prices, 
+and "Add to Cart" button, here some screenshots for menu. 
+![Menu section-1](screenshots/Menu/Menu-Page-1.png) 
+![Menu section-2](screenshots/Menu/Menu-Page-2.png) 
+![Menu section-3](screenshots/Menu/Menu-Page-3.png)
+![Menu section-4](screenshots/Menu/Menu-Page-4.png)
+![Menu section-5](screenshots/Menu/Menu-Page-5.png)
+![Menu section-6](screenshots/Menu/Menu-Page-6.png)
+![Menu section-7](screenshots/Menu/Menu-Page-7.png)
+![Menu section-8](screenshots/Menu/Menu-Page-8.png)
+ The image popup appears when a user clicks on it
+![Menu image-popup](screenshots/Menu/Menu-Page-PopUp.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Cart Page  
+![Cart section-1](screenshots/Cart/Cart-Page-1.png)  
+![Cart section-2](screenshots/Cart/Cart-Page-2.png)  
+![Cart section-3](screenshots/Cart/Cart-Page-3.png)
+User sending order form
+![Cart send-order](screenshots/Cart/Send-Order.png)  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Contact Page  
+![Contact section-1](screenshots/Contact/Contact-Page-1.png)
+![Contact section-2](screenshots/Contact/Contact-Page-2.png)
 
-## Learn More
+## Deployment:
+You can view the live version of the app here:
+Live App: https://hallal-snacks-project.netlify.app
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Author:
+Reem Saijary(Worked individually on this project).
