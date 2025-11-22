@@ -56,7 +56,8 @@ This is a responsive web app for a restaurant called Hallal Snacks, made with Re
 **src/components/WhatsAppIcon.js** --> Fixed WhatsApp button across all pages.
 
 **src/Styling/.css** --> CSS files for custom theme, responsiveness, and layout.
-g
+
+
 **public/**	--> Contains static assets like images, favicon, and index.html.
 
 ## Screenshots:
