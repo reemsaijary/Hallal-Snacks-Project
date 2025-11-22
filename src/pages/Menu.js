@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import "../Styling/Menu.css";
-import menuData from "../Data/MenuData"; 
+import MenuData from "../Data/MenuData"; 
 const importAll = (r) => {
   let images = {};
   r.keys().forEach((key) => {
@@ -45,13 +45,13 @@ function Menu() {
   const closePopup = () => setSelectedImage(null);
   return (
     <div className="container">
-      {Object.keys(menuData).map((sectionKey) => (
+      {Object.keys(MenuData).map((sectionKey) => (
         <div key={sectionKey} className="mb-5">
           <h2 className="mb-4">
            {sectionKey.split(/(?=[A-Z])/).join(" ")}
            </h2>
           <div className="row justify-content-center">
-            {menuData[sectionKey].map((item, idx) => (
+            {MenuData[sectionKey].map((item, idx) => (
               <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4" key={idx}>
                 <div className="card h-100 shadow-sm">
                   <div
