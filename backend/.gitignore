@@ -1,0 +1,3 @@
+// This keeps project clean and database passwords secret.
+node_modules
+.env
