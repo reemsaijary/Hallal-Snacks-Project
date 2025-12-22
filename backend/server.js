@@ -1,0 +1,1 @@
+console.log("Hallal Snacks Backend is ready!");
