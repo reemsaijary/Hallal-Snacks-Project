@@ -36,6 +36,15 @@ app.get('/api/products', (req, res) => {
         }
     });
 });
+// Window to login (as Admin)
+app.post('/api/login', (req, res) => {
+    const { email, password } = req.body;
+    db.query("SELECT * FROM users WHERE email = ? AND password = ?", [email, password], (err, result) => {
+        if (err) return res.status(500).send(err);
+        if (result.length > 0) res.send({ message: "Welcome back, Reemg", user: result[0] });
+        else res.status(401).send({ message: "Wrong credentials!" });
+    });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
