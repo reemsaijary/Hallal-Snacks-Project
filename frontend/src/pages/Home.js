@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import "../Styling/Home.css";
-import heroImage from "../assets/Home.png";
 import {FaHamburger, FaDrumstickBite, FaLeaf, FaStar, FaSmile, FaShippingFast,}
    from "react-icons/fa";
 import { GiFrenchFries } from "react-icons/gi";
@@ -11,7 +10,7 @@ function Home() {
   return (
     <div className="home-page">
       <section className="hero-section">
-        <img src={heroImage} alt="Halal Snacks" className="hero-img" />
+        <img src="/assets/Home.png"alt="Halal Snacks" className="hero-img" />
         <div className="hero-overlay">
           <div className="hero-content">
             <h1>Hallal Snacks</h1>

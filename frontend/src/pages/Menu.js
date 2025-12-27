@@ -1,80 +1,89 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; 
 import { useCart } from "../context/CartContext";
 import "../Styling/Menu.css";
-import MenuData from "../data/MenuData"; 
-const importAll = (r) => {
-  let images = {};
-  r.keys().forEach((key) => {
-    const baseName = key.replace("./", "").replace(/\.(jpe?g|png|webp)$/i, "");
-    const normalizedName = baseName.toLowerCase().replace(/[^a-z0-9]/g, ''); 
-    images[normalizedName] = r(key).default || r(key);
-  });
-  return images;
-};
 
-const chickenImages = importAll(require.context("../assets/Menu-items/ChickenBurger", false, /\.(jpe?g|png|webp)$/));
-const beefImages = importAll(require.context("../assets/Menu-items/BeefBurger", false, /\.(jpe?g|png|webp)$/));
-const sandwichImages = importAll(require.context("../assets/Menu-items/Sandwiches", false, /\.(jpe?g|png|webp)$/));
-const friesImages = importAll(require.context("../assets/Menu-items/Fries", false, /\.(jpe?g|png|webp)$/));
-const fallback = "/assets/Menu-items/placeholder.jpeg";
-const getImage = (section, itemName) => {
-  const keyName = itemName.toLowerCase().replace(/[^a-z0-9]/g, ''); 
-  let imageSet;
-  switch (section) {
-    case "ChickenBurger": imageSet = chickenImages; break;
-    case "BeefBurger": imageSet = beefImages; break;
-    case "Sandwiches": imageSet = sandwichImages; break;
-    case "Fries": imageSet = friesImages; break;
-    default: return fallback; 
-  }
-  return imageSet.hasOwnProperty(keyName) ? imageSet[keyName] : fallback;
-};
 function Menu() {
+  const [menuData, setMenuData] = useState({}); // Stores grouped products from DB
+  const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
-  const { addItemToCart } = useCart(); 
-  const handleAddToCart = (item, sectionKey) => {
-    const quantityToAdd = 1; 
-    const imageUrl = getImage(sectionKey, item.name); 
-    addItemToCart({ ...item, imageUrl, section: sectionKey }, quantityToAdd); 
+  const { addItemToCart } = useCart();
+
+  // Fallback image in case the database path is broken or empty
+  const fallback = "/assets/Menu-items/placeholder.jpeg"
+  useEffect(() => {
+    document.body.style.backgroundImage = "url('/assets/home-bg1.jpeg')";
+    axios.get("http://localhost:5000/api/products")
+      .then((res) => {
+        const grouped = res.data.reduce((acc, item) => {
+          const cat = item.category || "Other";
+          if (!acc[cat]) acc[cat] = [];
+          acc[cat].push(item);
+          return acc;
+        }, {});
+        
+        setMenuData(grouped);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Database connection error:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  const handleAddToCart = (item) => {
+ 
+    addItemToCart({ ...item, imageUrl: item.image_url || fallback }, 1); 
     alert(`1 x ${item.name} added to cart!`); 
   };
-  const openImage = (section, itemName) => {
-    setSelectedImage(getImage(section, itemName));
-  };
-  const closePopup = () => setSelectedImage(null);
+
+  if (loading) {
+    return (
+      <div className="container text-center" style={{ marginTop: "150px" }}>
+        <h3 className="text-warning">Loading Hallal Snacks Menu...</h3>
+      </div>
+    );
+  }
+
   return (
     <div className="container">
-      {Object.keys(MenuData).map((sectionKey) => (
+      {Object.keys(menuData).map((sectionKey) => (
         <div key={sectionKey} className="mb-5">
-          <h2 className="mb-4">
-           {sectionKey.split(/(?=[A-Z])/).join(" ")}
-           </h2>
+        
+          <h2 className="mb-4">{sectionKey.split(/(?=[A-Z])/).join(" ")}</h2>
+          
           <div className="row justify-content-center">
-            {MenuData[sectionKey].map((item, idx) => (
-              <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4" key={idx}>
+            {menuData[sectionKey].map((item) => (
+              <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4" key={item.id}>
                 <div className="card h-100 shadow-sm">
                   <div
                     className="card-img-top img-clickable"
                     style={{
-                      backgroundImage: `url(${getImage(sectionKey, item.name)})`,
+                      backgroundImage: `url(${item.image_url || fallback})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       height: "200px",
                       cursor: "pointer",
                     }}
-                    onClick={() => openImage(sectionKey, item.name)}
+                    onClick={() => setSelectedImage(item.image_url || fallback)}
                     role="button"
                     aria-label={`View ${item.name}`}
                   />
                   <div className="card-body d-flex flex-column">
                     <h5 className="card-title">{item.name}</h5>
-                    <p className="card-text">{item.ingredients}</p>
-                    <p className="card-text fw-bold">${Number(item.price).toFixed(2)}</p>
-                    <div className="d-flex mb-2">
+                    <p className="card-text" style={{ fontSize: "0.9rem", color: "#666" }}>
+                      {item.ingredients}
+                    </p>
+                    <p className="card-text fw-bold text-dark mt-auto">
+                      ${Number(item.price).toFixed(2)}
+                    </p>
+                    <div className="d-flex mt-2">
                       <button 
-                         className="btn btn-warning flex-grow-1"
-                         onClick={() => handleAddToCart(item, sectionKey)}> Add to Cart </button>
+                        className="btn btn-warning flex-grow-1 fw-bold"
+                        onClick={() => handleAddToCart(item)}
+                      > 
+                        Add to Cart 
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -83,11 +92,13 @@ function Menu() {
           </div>
         </div>
       ))}
+
+      {/* Image Popup Modal */}
       {selectedImage && (
-        <div className="image-popup" onClick={closePopup} role="dialog" aria-modal="true">
+        <div className="image-popup" onClick={() => setSelectedImage(null)}>
           <div className="popup-overlay" />
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <button className="popup-close" onClick={closePopup} aria-label="Close">✕</button>
+            <button className="popup-close" onClick={() => setSelectedImage(null)}>✕</button>
             <img src={selectedImage} alt="Full view" className="popup-image" />
           </div>
         </div>
@@ -95,4 +106,5 @@ function Menu() {
     </div>
   );
 }
+
 export default Menu;

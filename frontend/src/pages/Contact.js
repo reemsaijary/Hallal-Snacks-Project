@@ -1,13 +1,12 @@
-import React from "react";
-import "../Styling/Contact.css";
-import whatsappIcon from "../assets/icons/Whatsapp.png"; 
-import facebookIcon from "../assets/icons/facebook.png";
-import instagramIcon from "../assets/icons/instagram.png"; 
-import tiktokIcon from "../assets/icons/tiktok.png"; 
 
+import "../Styling/Contact.css";
 function Contact() {
+
+  const pageStyle = {
+    backgroundImage: "url('/assets/contact-bg.png')",
+  };
   return (
-    <div className="contact-page">
+    <div className="contact-page" style={pageStyle}>
       
       {/* Header */}
       <section className="contact-header text-center py-5">
@@ -45,16 +44,16 @@ function Contact() {
               <h5 className="info-title">Follow Us</h5>
               <div className="social-icons d-flex gap-2">
                 <a href="https://wa.me/96103675158" target="_blank" rel="noopener noreferrer">
-                  <img src={whatsappIcon} alt="WhatsApp" />
+                  <img src="/assets/icons/Whatsapp.png" alt="WhatsApp" />
                 </a>
                 <a href="https://www.facebook.com/@hallalsnacks" target="_blank" rel="noopener noreferrer">
-                  <img src={facebookIcon} alt="Facebook" />
+                  <img src="/assets/icons/facebook.png" alt="Facebook" />
                 </a>
                 <a href="https://www.instagram.com/hallalsnacks" target="_blank" rel="noopener noreferrer">
-                  <img src={instagramIcon} alt="Instagram" />
+                  <img src="/assets/icons/instagram.png" alt="Instagram" />
                 </a>
                 <a href="https://www.tiktok.com/@hallalsnacks26" target="_blank" rel="noopener noreferrer">
-                  <img src={tiktokIcon} alt="TikTok" />
+                  <img src="/assets/icons/tiktok.png" alt="TikTok" />
                 </a>
               </div>
             </div>

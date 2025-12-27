@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import logo from "../assets/logoo.jpeg";
 import "./Navbar.css";
 import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext"; 
@@ -19,7 +18,7 @@ function Navbar() {
     <nav className={`navbar navbar-expand-lg fixed-top ${scrolled ? "scrolled" : "transparent"}`}>
       <div className="container">
         <Link className="navbar-brand d-flex align-items-center" to="/">
-          <img src={logo} alt="Hallal Snacks Logo" width="80" height="80" className="me-2 rounded-circle"/>
+          <img src="/assets/logoo.jpeg" alt="Hallal Snacks Logo" width="80" height="80" className="me-2 rounded-circle"/>
           <span>Hallal Snacks</span>
         </Link>
         <button

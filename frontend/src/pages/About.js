@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 import "../Styling/About.css";
-import heroImage from "../assets/About-imgs/about-bg.jpeg";
-import freshIcon from "../assets/icons/fresh.png";
-import fastIcon from "../assets/icons/fast.png";
-import serviceIcon from "../assets/icons/service.png";
-import varietyIcon from "../assets/icons/variety.png";
 
 function About() {
   const [glow, setGlow] = useState(false);
@@ -15,17 +10,17 @@ function About() {
   };
 
   const features = [
-    { icon: freshIcon, title: "Fresh Ingredients", desc: "Only the freshest vegetables, meats, and sauces." },
-    { icon: fastIcon, title: "Fast Delivery", desc: "Hot and delicious food delivered to your door." },
-    { icon: serviceIcon, title: "Friendly Service", desc: "We treat every customer like family." },
-    { icon: varietyIcon, title: "Tasty Variety", desc: "Burgers, sandwiches, fries – something for everyone!" },
+    { icon: <img src="/assets/icons/fresh.png"/>, title: "Fresh Ingredients", desc: "Only the freshest vegetables, meats, and sauces." },
+    { icon: <img src="/assets/icons/fast.png"/>, title: "Fast Delivery", desc: "Hot and delicious food delivered to your door." },
+    { icon: <img src="/assets/icons/service.png"/>, title: "Friendly Service", desc: "We treat every customer like family." },
+    { icon: <img src="/assets/icons/variety.png"/>, desc: "Burgers, sandwiches, fries – something for everyone!" },
   ];
 
   return (
     <div className="about-page">
       {/* Hero Section */}
       <section className="hero-section">
-        <img src={heroImage} alt="Hallal Snacks" className="hero-img" />
+        <img src="/assets/About-imgs/about-bg.jpeg" alt="Hallal Snacks" className="hero-img" />
         <div className="hero-overlay">
           <h1 className="hero-title">Where There is Food There is Love</h1>
         </div>
@@ -74,13 +69,13 @@ function About() {
         </p>
         <div className="social-links">
           <a href="https://www.instagram.com/hallalsnacks" target="_blank" rel="noopener noreferrer">
-            <img src={require("../assets/icons/instagram.png")} alt="Instagram" />
+            <img src="/assets/icons/instagram.png" alt="Instagram" />
           </a>
           <a href="https://www.tiktok.com/@hallalsnacks26" target="_blank" rel="noopener noreferrer">
-            <img src={require("../assets/icons/tiktok.png")} alt="TikTok" />
+            <img src="/assets/icons/tiktok.png" alt="TikTok" />
           </a>
           <a href="https://www.facebook.com/@hallalsnacks" target="_blank" rel="noopener noreferrer">
-            <img src={require("../assets/icons/facebook.png")} alt="Facebook" />
+            <img src="/assets/icons/facebook.png" alt="Facebook" />
           </a>
         </div>
       </section>
