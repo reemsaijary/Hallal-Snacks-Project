@@ -1,11 +1,11 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
-require('dotenv').config();  // This looks for .env file
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
-app.use(express.json());//allows the server to read the email and password send
+app.use(express.json());
 
 // Database connection pool
 const db = mysql.createPool({
@@ -20,29 +20,56 @@ db.getConnection((err) => {
   if (err) {
     console.error("Connection failed: ", err);
   } else {
-    console.log("Success, Connected to the Hallal Snacks database.");
+    console.log("Success! Connected to the Hallal Snacks database.");
   }
 });
 
-// The "Get Products" Window
-app.get('/api/products', (req, res) => {
-    const sqlSearch = "SELECT * FROM products";
-    db.query(sqlSearch, (err, result) => {
-        if (err) {
-            console.log("Error searching database:", err);
-            res.status(500).send(err);
+// ---  LOGIN ROUTE ---
+app.post('/api/login', (req, res) => {
+    const { email, password } = req.body;
+    const sqlSearch = "SELECT * FROM users WHERE email = ? AND password = ?";
+    
+    db.query(sqlSearch, [email, password], (err, result) => {
+        if (err) return res.status(500).send(err);
+        if (result.length > 0) {
+            // Sends the whole user object including the role back to React
+            res.send({ message: "Welcome back!", user: result[0] });
         } else {
-            res.send(result);
+            res.status(401).send({ message: "Wrong credentials!" });
         }
     });
 });
-// Window to login (as Admin)
-app.post('/api/login', (req, res) => {
+
+// --- SIGN UP ROUTE ---
+app.post('/api/register', (req, res) => {
     const { email, password } = req.body;
-    db.query("SELECT * FROM users WHERE email = ? AND password = ?", [email, password], (err, result) => {
+    const defaultRole = 'user'; 
+    // Check if user exists first
+    db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
         if (err) return res.status(500).send(err);
-        if (result.length > 0) res.send({ message: "Welcome back, Reemg", user: result[0] });
-        else res.status(401).send({ message: "Wrong credentials!" });
+        
+        if (result.length > 0) {
+            return res.status(400).send({ message: "Email already exists!" });
+        } else {
+            const sqlInsert = "INSERT INTO users (email, password, role) VALUES (?, ?, ?)";
+            
+            db.query(sqlInsert, [email, password, defaultRole], (err, result) => {
+                if (err) {
+                    console.error("Insert error:", err);
+                    return res.status(500).send(err);
+                }
+                console.log(`Success! New account: ${email} with role: ${defaultRole}`);
+                res.send({ message: "Account created! You are now a member." });
+            });
+        }
+    });
+});
+
+// --- GET PRODUCTS ---
+app.get('/api/products', (req, res) => {
+    db.query("SELECT * FROM products", (err, result) => {
+        if (err) return res.status(500).send(err);
+        res.send(result);
     });
 });
 
