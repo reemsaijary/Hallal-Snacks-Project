@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; 
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "../Styling/Menu.css";
 
 function Menu() {
-  const [menuData, setMenuData] = useState({}); // Stores grouped products from DB
+  const [menuData, setMenuData] = useState({});
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const { addItemToCart } = useCart();
-
-  // Fallback image in case the database path is broken or empty
+  const navigate = useNavigate(); 
   const fallback = "/assets/Menu-items/placeholder.jpeg"
+
   useEffect(() => {
     document.body.style.backgroundImage = "url('/assets/home-bg1.jpeg')";
     axios.get("http://localhost:5000/api/products")
@@ -32,7 +33,16 @@ function Menu() {
   }, []);
 
   const handleAddToCart = (item) => {
- 
+    // Check if user is logged in
+    const user = localStorage.getItem("hallal_user");
+
+    if (!user) {
+      // If not logged in, stop them here
+      alert("Please login first to start ordering your Hallal Snacks items");
+      navigate("/login");
+      return;
+    }
+    // If logged in, proceed to add the snack
     addItemToCart({ ...item, imageUrl: item.image_url || fallback }, 1); 
     alert(`1 x ${item.name} added to cart!`); 
   };
@@ -49,9 +59,7 @@ function Menu() {
     <div className="container">
       {Object.keys(menuData).map((sectionKey) => (
         <div key={sectionKey} className="mb-5">
-        
-          <h2 className="mb-4">{sectionKey.split(/(?=[A-Z])/).join(" ")}</h2>
-          
+          <h2 className="mb-4 text-white">{sectionKey.split(/(?=[A-Z])/).join(" ")}</h2> 
           <div className="row justify-content-center">
             {menuData[sectionKey].map((item) => (
               <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4" key={item.id}>
@@ -82,7 +90,7 @@ function Menu() {
                         className="btn btn-warning flex-grow-1 fw-bold"
                         onClick={() => handleAddToCart(item)}
                       > 
-                        Add to Cart 
+                       Add to Cart 
                       </button>
                     </div>
                   </div>
@@ -106,5 +114,4 @@ function Menu() {
     </div>
   );
 }
-
 export default Menu;

@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
+import OrderHistory from "./pages/OrderHistory";
 import { CartProvider } from "./context/CartContext"; 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/OrderHistory" element={<OrderHistory />} />
           <Route path="/login" element={<Login />} />
         </Routes>
         <WhatsAppIcon/>

@@ -72,6 +72,28 @@ app.get('/api/products', (req, res) => {
         res.send(result);
     });
 });
+// ---  PLACE A NEW ORDER ---
+app.post('/api/orders', (req, res) => {
+    const { email, items, total } = req.body;
+    // We use JSON.stringify(items) because 'items' is an array of snacks
+    const sqlOrder = "INSERT INTO orders (user_email, items, total_price) VALUES (?, ?, ?)";
+
+    db.query(sqlOrder, [email, JSON.stringify(items), total], (err, result) => {
+        if (err) return res.status(500).send(err);
+        res.send({ message: "Order placed! Get ready to eat!", orderId: result.insertId });
+    });
+});
+
+// ---  GET HISTORY FOR A SPECIFIC USER ---
+app.get('/api/orders/:email', (req, res) => {
+    const email = req.params.email;
+    const sqlHistory = "SELECT * FROM orders WHERE user_email = ? ORDER BY created_at DESC";
+
+    db.query(sqlHistory, [email], (err, result) => {
+        if (err) return res.status(500).send(err);
+        res.send(result);
+    });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
