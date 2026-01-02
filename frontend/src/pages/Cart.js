@@ -9,9 +9,7 @@ const CheckoutModal = ({ show, onClose, cartItems, total, clearCart }) => {
   const [phone, setPhone] = useState("");
   const [orderType, setOrderType] = useState("Pickup");
   const [address, setAddress] = useState("");
-
   if (!show) return null;
-
   const handleWhatsAppOrder = async (e) => { // Added async
     e.preventDefault();
     if (!name || !phone) {
