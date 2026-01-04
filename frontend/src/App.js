@@ -1,5 +1,4 @@
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppIcon from "./components/WhatsAppIcon";
@@ -12,11 +11,17 @@ import Contact from "./pages/Contact";
 import OrderHistory from "./pages/OrderHistory";
 import AdminDashboard from "./admin/AdminDashboard";    
 import { CartProvider } from "./context/CartContext"; 
-function App() {
+
+function AppContent() {
+  const location = useLocation();
+  const isAdminPath = location.pathname.startsWith('/admin');
+
   return (
-    <Router>
-      <CartProvider> 
-        <Navbar />
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      {/* Remove navbar entirely for admin */}
+      {!isAdminPath && <Navbar />}
+      
+      <main style={{ flexGrow: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -27,10 +32,22 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
-        <WhatsAppIcon/>
-        <Footer />
+      </main>
+
+      {!isAdminPath && <WhatsAppIcon/>}
+      {!isAdminPath && <Footer />}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <CartProvider> 
+        <AppContent />
       </CartProvider>
     </Router>
   );
 }
+
 export default App;

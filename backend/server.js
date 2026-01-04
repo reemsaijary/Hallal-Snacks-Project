@@ -1,18 +1,33 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const multer = require('multer'); 
+const path = require('path');   
 require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// --- MULTER CONFIGURATION FOR UPLOADS ---
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // Saves images into  frontend public folder
+    cb(null, '../frontend/public/assets/Menu-items'); 
+  },
+  filename: (req, file, cb) => {
+    // Unique name using timestamp + original name
+    cb(null, Date.now() + "-" + file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
+
 const db = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  multipleStatements: true // This allows the analytics q1; q2; q3 to work
+  multipleStatements: true 
 });
 
 db.getConnection((err) => {
@@ -20,6 +35,14 @@ db.getConnection((err) => {
   else console.log("Success! Connected to the Hallal Snacks database.");
 });
 
+// --- NEW UPLOAD ENDPOINT ---
+app.post('/api/admin/upload', upload.single('image'), (req, res) => {
+  if (!req.file) return res.status(400).send({ message: "No file uploaded" });
+  const filePath = `/assets/Menu-items/${req.file.filename}`;
+  res.send({ imageUrl: filePath });
+});
+
+// --- ORIGINAL ROUTES ---
 app.post('/api/login', (req, res) => {
     const { email, password } = req.body;
     db.query("SELECT * FROM users WHERE email = ? AND password = ?", [email, password], (err, result) => {
@@ -52,7 +75,6 @@ app.post('/api/orders', (req, res) => {
     });
 });
 
-// ADMIN ANALYTICS
 app.get('/api/admin/analytics', (req, res) => {
     const q1 = "SELECT COUNT(*) as count FROM users";
     const q2 = "SELECT COUNT(*) as count FROM orders WHERE DATE(created_at) = CURDATE()";
@@ -60,25 +82,18 @@ app.get('/api/admin/analytics', (req, res) => {
     const q4 = "SELECT items FROM orders";
 
     db.query(`${q1}; ${q2}; ${q3}; ${q4}`, (err, results) => {
-        if (err) {
-            console.error("Database Error:", err);
-            return res.status(500).send({ error: "Check if multipleStatements is true in your pool config." });
-        }
-
-        //  to count top items from JSON
+        if (err) return res.status(500).send({ error: "Check if multipleStatements is true." });
         const allItems = [];
         results[3].forEach(row => {
             try {
                 const parsed = JSON.parse(row.items);
                 parsed.forEach(item => allItems.push(item.name));
-            } catch (e) { /* skip empty/invalid JSON */ }
+            } catch (e) { }
         });
-
         const counts = allItems.reduce((acc, name) => {
             acc[name] = (acc[name] || 0) + 1;
             return acc;
         }, {});
-
         const top3 = Object.entries(counts)
             .map(([name, total_ordered]) => ({ name, total_ordered }))
             .sort((a, b) => b.total_ordered - a.total_ordered)
@@ -93,7 +108,6 @@ app.get('/api/admin/analytics', (req, res) => {
     });
 });
 
-// --- ADMIN: MANAGE ORDERS & PRODUCTS ---
 app.get('/api/admin/orders', (req, res) => {
     db.query("SELECT * FROM orders ORDER BY created_at DESC", (err, result) => {
         if (err) return res.status(500).send(err);
