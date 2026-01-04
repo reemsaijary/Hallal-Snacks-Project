@@ -10,10 +10,10 @@ function About() {
   };
 
   const features = [
-    { icon: <img src="/assets/icons/fresh.png" alt=""/>, title: "Fresh Ingredients", desc: "Only the freshest vegetables, meats, and sauces." },
-    { icon: <img src="/assets/icons/fast.png" alt=""/>, title: "Fast Delivery", desc: "Hot and delicious food delivered to your door." },
-    { icon: <img src="/assets/icons/service.png" alt=""/>, title: "Friendly Service", desc: "We treat every customer like family." },
-    { icon: <img src="/assets/icons/variety.png" alt=""/>, desc: "Burgers, sandwiches, fries – something for everyone!" },
+    { icon: "/assets/icons/fresh.png", title: "Fresh Ingredients", desc: "Only the freshest vegetables, meats, and sauces." },
+    { icon: "/assets/icons/fast.png", title: "Fast Delivery", desc: "Hot and delicious food delivered to your door." },
+    { icon: "/assets/icons/service.png", title: "Friendly Service", desc: "We treat every customer like family." },
+    { icon: "/assets/icons/variety.png" , desc: "Burgers, sandwiches, fries – something for everyone!" },
   ];
 
   return (

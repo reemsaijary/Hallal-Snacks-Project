@@ -4,6 +4,8 @@ import {FaHamburger, FaDrumstickBite, FaLeaf, FaStar, FaSmile, FaShippingFast,}
    from "react-icons/fa";
 import { GiFrenchFries } from "react-icons/gi";
 import { BiBadgeCheck } from "react-icons/bi";
+import { GiSandwich } from "react-icons/gi";
+
 
 function Home() {
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ function Home() {
             <h5>Fries</h5>
           </div>
           <div className="offer-card">
-            <FaHamburger className="offer-icon" />
+            <GiSandwich  className="offer-icon" />
             <h5>Sandwiches</h5>
           </div>
         </div>
