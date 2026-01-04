@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "components/*": ["admin/components/*"],
+      "examples/*": ["admin/examples/*"],
+      "assets/*": ["admin/assets/*"],
+      "layouts/*": ["admin/layouts/*"],
+      "context/*": ["admin/context/*"]
+    }
+  }
+}
